@@ -8,33 +8,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.ssafy.ssafit.dto.CommentDto;
 import com.ssafy.ssafit.dto.VideoArticleDto;
+import com.ssafy.ssafit.service.CommentService;
 import com.ssafy.ssafit.service.VideoArticleService;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 public class VideoArticleController {
 
 	private final VideoArticleService videoService;
+	private final CommentService commentService;
 
-	public VideoArticleController(VideoArticleService videoService) {
+	public VideoArticleController(VideoArticleService videoService, CommentService commentService) {
 		this.videoService = videoService;
+		this.commentService = commentService;
 	}
-
-//	@GetMapping("/admin/registform")
-//	public String articleRegistForm() {
-//	    return "admin/articleRegistForm";
-//	}
-//
-//	
-//	//글쓰기(관리자만)
-//	@PostMapping("/regist")
-//	public String createArticle(@ModelAttribute VideoArticleDto videoarticle ) {
-//		videoService.createArticle(videoarticle);
-//		return "redirect:/admin/articles";
-//	}
 
 	// 전체보기
 	@GetMapping("/index")
@@ -65,7 +55,43 @@ public class VideoArticleController {
 	public String getArticleDetails(@PathVariable long id, Model model) {
 		VideoArticleDto article = videoService.detailArticle(id);
 		model.addAttribute("article", article);
+
+		List<CommentDto> comments = commentService.selectAll(id);
+		model.addAttribute("comments", comments);
 		return "article/detail"; // detail.jsp 또는 detail.html
 	}
+
+	// 댓글쓰기
+	@PostMapping("/articles/{id}/comment")
+	public String registerComment(@PathVariable long id, @ModelAttribute CommentDto comment) {
+		commentService.createComment(comment);
+		return "redirect:/articles/{id}";
+	}
+
+	@PostMapping("/articles/{articleId}/comments/{commentId}/delete")
+	public String deleteComment(@PathVariable long articleId, @PathVariable long commentId) {
+		commentService.delete(commentId);
+		return "redirect:/articles/" + articleId;
+	}
+
+	@GetMapping("/articles/{articleId}/comments/{commentId}/edit")
+	public String editCommentForm(@PathVariable long articleId, @PathVariable long commentId, Model model) {
+	    CommentDto comment = commentService.select(commentId);
+	    model.addAttribute("comment", comment);
+	    return "comment/editForm"; // JSP에서 수정 폼 렌더링
+	}
+
+	
+	// 댓글 수정
+	@PostMapping("/articles/{articleId}/comments/{commentId}/update")
+	public String updateComment(@PathVariable long articleId,
+	                            @PathVariable long commentId,
+	                            @ModelAttribute CommentDto commentDto) {
+	    commentDto.setCommentId(commentId);         
+	    commentDto.setVideoArticleId(articleId);    
+	    commentService.updateComment(commentDto);
+	    return "redirect:/articles/" + articleId;
+	}
+
 
 }
