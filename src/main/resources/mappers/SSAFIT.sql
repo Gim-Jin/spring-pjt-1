@@ -43,10 +43,13 @@ CREATE TABLE `admin` (
 
 ALTER TABLE `comment` ADD CONSTRAINT `FK_users_TO_review_1` FOREIGN KEY (
 	`user_id`
+    
+
 )
 REFERENCES `users` (
 	`user_id`
-);
+) ON DELETE CASCADE;
+
 
 ALTER TABLE `comment`ADD CONSTRAINT `FK_video_article_TO_review_1` FOREIGN KEY (
 	`video_article_id`
@@ -67,5 +70,19 @@ VALUES
 ("11자복근 복부 최고의 운동 [복근 핵매운맛]", "복부", "ThankyouBUBU", "https://www.youtube.com/embed/PjGcOP-TQPE", 0),
 ("(Sub)누워서하는 5분 복부운동!! 효과보장! (매일 2주만 해보세요!)", "복부", "SomiFit", "https://www.youtube.com/embed/7TLk7pscICk", 0);
 
-SELECT * FROM video_article;
+INSERT INTO admin VALUES(1,"admin1234","admin1234");
 
+
+
+SELECT * FROM video_article; 
+
+
+
+SELECT * FROM users;
+SELECT * FROM comment;
+INSERT INTO comment (user_id, video_article_id,comment_content)
+VALUES (1,1,"집에가고 싶어");
+
+
+
+SELECT * FROM admin;
