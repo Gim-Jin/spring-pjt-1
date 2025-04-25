@@ -29,6 +29,7 @@ public class AdminController {
 		this.userService = userService;
 		
 		this.adminService = adminService;
+		
 	}
 	
 	@GetMapping("/index")

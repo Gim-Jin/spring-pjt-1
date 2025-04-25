@@ -1,9 +1,14 @@
 package com.ssafy.ssafit.service.impl;
 
+import org.springframework.stereotype.Service;
+
 import com.ssafy.ssafit.dto.AdminDto;
 import com.ssafy.ssafit.repository.AdminRepository;
 import com.ssafy.ssafit.service.AdminService;
 
+
+
+@Service
 public class AdminServiceImpl implements AdminService {
 	
 	private final AdminRepository adminRepository;
