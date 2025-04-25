@@ -148,62 +148,35 @@
                     <h2>인기 영상</h2>
                     <a href="/video/list" class="btn btn-outline-primary">모든 영상 보기</a>
                 </div>
+                
                 <div class="row g-4">
                     <!-- 인기 영상 카드 1 -->
+                    <c:forEach var="article" items="${articles }">
                     <div class="col-md-4">
                         <div class="card video-card shadow-sm h-100">
-                            <img src="https://img.youtube.com/vi/gMaB-fG4u4g/mqdefault.jpg" class="card-img-top" alt="전신 다이어트 최고의 운동">
+                        
+                            <img src="https://img.youtube.com/vi/${article.videoArticleUrl }/mqdefault.jpg" class="card-img-top" alt="전신 다이어트 최고의 운동">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between mb-2">
-                                    <span class="badge bg-primary">전신</span>
-                                    <small class="text-muted"><i class="bi bi-eye"></i> 1,234,567</small>
+                                    <span class="badge bg-primary">${article.videoArticlePart }</span>
+                                    <small class="text-muted"><i class="bi bi-eye"></i>${article.videoArticleViews }</small>
                                 </div>
-                                <h5 class="card-title">전신 다이어트 최고의 운동</h5>
-                                <p class="card-text">하루 15분 투자로 전신 다이어트 효과를 보는 최고의 운동 루틴</p>
-                            </div>
-                            <div class="card-footer bg-white">
-                                <a href="/video/detail?id=1" class="btn btn-sm btn-primary w-100">영상 보기</a>
-                            </div>
-                        </div>
-                    </div>
+                                <h5 class="card-title">${article.videoArticleTitle }</h5>
                     
-                    <!-- 인기 영상 카드 2 -->
-                    <div class="col-md-4">
-                        <div class="card video-card shadow-sm h-100">
-                            <img src="https://img.youtube.com/vi/swRNeYw1JkY/mqdefault.jpg" class="card-img-top" alt="하루 15분 복부 운동">
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between mb-2">
-                                    <span class="badge bg-success">복부</span>
-                                    <small class="text-muted"><i class="bi bi-eye"></i> 987,654</small>
-                                </div>
-                                <h5 class="card-title">하루 15분 복부 운동</h5>
-                                <p class="card-text">효과적인 복부 운동으로 탄탄한 코어 근육을 만들어보세요</p>
                             </div>
                             <div class="card-footer bg-white">
-                                <a href="/video/detail?id=2" class="btn btn-sm btn-primary w-100">영상 보기</a>
+                                <a href="/articles/${article.videoArticleId }" class="btn btn-sm btn-primary w-100">영상 보기</a>
                             </div>
                         </div>
                     </div>
+                   </c:forEach>
+                
                     
-                    <!-- 인기 영상 카드 3 -->
-                    <div class="col-md-4">
-                        <div class="card video-card shadow-sm h-100">
-                            <img src="https://img.youtube.com/vi/54tTYO-vU2E/mqdefault.jpg" class="card-img-top" alt="상체 덤벨 운동">
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between mb-2">
-                                    <span class="badge bg-danger">상체</span>
-                                    <small class="text-muted"><i class="bi bi-eye"></i> 876,543</small>
-                                </div>
-                                <h5 class="card-title">상체 덤벨 운동</h5>
-                                <p class="card-text">집에서 간단히 할 수 있는 덤벨을 이용한 상체 근력 운동</p>
-                            </div>
-                            <div class="card-footer bg-white">
-                                <a href="/video/detail?id=3" class="btn btn-sm btn-primary w-100">영상 보기</a>
-                            </div>
-                        </div>
-                    </div>
+               
                 </div>
+                
             </div>
+       
         </section>
         
         <!-- 커뮤니티 섹션 -->

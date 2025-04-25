@@ -176,7 +176,7 @@
     </style>
 </head>
 <body>
-    <%@ include file="header.jsp"%>
+    <%@ include file="/WEB-INF/header.jsp"%>
 
     <div class="container">
         <div class="login-container animate__animated animate__fadeIn">
@@ -185,7 +185,7 @@
             </div>
             <h2 class="login-title fw-bold">로그인</h2>
             
-            <form action="${pageContext.request.contextPath}/users/login" method="post">
+            <form action="/users/login" method="post">
                 <div class="form-group">
                     <label for="userEmail" class="form-label">이메일</label>
                     <div class="input-group">
@@ -244,7 +244,7 @@
         </div>
     </div>
     
-    <%@ include file="footer.jsp"%>
+    <%@ include file="/WEB-INF/footer.jsp"%>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>

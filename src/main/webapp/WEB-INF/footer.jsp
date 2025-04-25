@@ -20,7 +20,7 @@
 				<h5 class="text-uppercase mb-4">바로가기</h5>
 				<ul class="list-unstyled">
 					<li class="mb-2">
-						<a href="index.jsp" class="text-white text-decoration-none"><i class="bi bi-chevron-right me-2"></i>홈</a></li>
+						<a href="/index" class="text-white text-decoration-none"><i class="bi bi-chevron-right me-2"></i>홈</a></li>
 					<li class="mb-2">
 						<a href="#" class="text-white text-decoration-none"><i class="bi bi-chevron-right me-2"></i>운동 영상</a></li>
 					<li class="mb-2">

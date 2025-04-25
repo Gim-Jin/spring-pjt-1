@@ -27,9 +27,14 @@ public class VideoArticleController {
 	}
 
 	// 전체보기
-	@GetMapping("/index")
+	@GetMapping({"/index","/"})
 	public String selectAllArticles(Model model) {
 		List<VideoArticleDto> articles = videoService.selectAll();
+		for (VideoArticleDto article : articles) {
+		    String url = article.getVideoArticleUrl();
+		    String videoId = url.substring(url.lastIndexOf("/") + 1);
+		    article.setVideoArticleUrl(videoId);
+		}
 		model.addAttribute("articles", articles);
 		return "index";
 	}
@@ -58,7 +63,7 @@ public class VideoArticleController {
 
 		List<CommentDto> comments = commentService.selectAll(id);
 		model.addAttribute("comments", comments);
-		return "article/detail"; // detail.jsp 또는 detail.html
+		return "detail"; // detail.jsp 또는 detail.html
 	}
 
 	// 댓글쓰기
