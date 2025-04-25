@@ -23,4 +23,7 @@ public interface VideoArticleService {
 
 	// 시청순 정렬
 	public List<VideoArticleDto> selectAllByviewcnt();
+	
+	// 부위별 조회
+	public List<VideoArticleDto> selectVideosByPart(String part);
 }
