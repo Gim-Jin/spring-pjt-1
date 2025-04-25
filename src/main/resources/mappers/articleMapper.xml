@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.ssafy.ssafit.repository.VideoArticleRepository">
+
+	<!-- 게시글 생성하기 -->
+	<insert id="insert" parameterType="VideoArticleDto">
+		INSERT INTO video_article
+		(video_article_title,video_article_part,video_article_channel,video_article_url)
+		VALUES
+		(#{videoArticleTitle},#{videoArticlePart},#{videoArticleChannel},#{videoArticleUrl})
+	</insert>
+
+	<!-- 한개 고르기 -->
+	<select id="selectById" parameterType="long"
+		resultType="VideoArticleDto">
+		SELECT *
+		FROM video_article
+		WHERE video_article_id =
+		#{videoArticleId}
+	</select>
+
+	<!-- 전체조회 -->
+	<select id="selectAll" resultType="VideoArticleDto">
+		SELECT *
+		FROM video_article
+	</select>
+
+	<!-- 정렬 조회 -->
+	<select id="selectAllByviewcnt" resultType="VideoArticleDto">
+		SELECT *
+		FROM video_article
+		<!-- 시청순 VIEWCNT순 -->
+		ORDER BY video_article_views DESC
+	</select>
+
+	<!-- 검색 -->
+	<select id="searchByTitle" parameterType="String" resultType="VideoArticleDto">
+		SELECT *
+		FROM video_article
+		WHERE video_article_title = #{videoArticleTitle}
+	</select>
+
+	<!-- 수정 -->
+	<update id="update" parameterType="VideoArticleDto">
+		UPDATE video_article
+		SET
+		video_article_title = #{videoArticleTitle},
+		video_article_part= #{videoArticlePart},
+		video_article_channel = #{videoArticleChannel},
+		video_article_url = #{videoArticleUrl},
+		video_article_views = #{videoArticleViews}
+		WHERE video_article_id = #{videoArticleId}
+	</update>
+	
+	<delete id="delete" parameterType="long">
+		DELETE FROM video_article
+		WHERE video_article_id = #{videoArticleId}
+	</delete>
+	
+
+	<select id="selectVideosByPart" parameterType="String">
+		SELECT *
+		FROM video_article
+		WHERE video_article_part = #{Part}
+	</select>
+
+	<update id="updateViewCount" parameterType="long">
+		UPDATE video_article
+		SET
+		video_article_views = video_article_views + 1
+		WHERE video_article_id = #{id}
+	</update>
+	
+</mapper>
