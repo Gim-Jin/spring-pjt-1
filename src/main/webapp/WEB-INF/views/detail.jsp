@@ -198,20 +198,19 @@ body {
             
             <div class="video-container">
                 <div class="video-responsive">
-                    <iframe src="${video.url}" title="YouTube video player" 
+                    <iframe src="${article.videoArticleUrl}" title="YouTube video player" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
             </div>
             
             <div class="video-info w-100 max-width-900">
-                <h3 class="video-title">${video.title}</h3>
+                <h3 class="video-title">${article.videoArticleTitle}</h3>
                 <div class="video-meta">
-                    <span class="badge-part">${video.part}</span>
-                    <span><i class="bi bi-eye"></i> ${video.viewCnt}회</span>
-                    <span><i class="bi bi-calendar-check"></i> 등록일: 2023.05.15</span>
+                    <span class="badge-part">${article.videoArticlePart}</span>
+                    <span><i class="bi bi-eye"></i> ${article.videoArticleViews}회</span>
                 </div>
-                <p>${video.title}에 대한 상세 설명입니다. 이 영상은 ${video.part} 운동에 효과적인 동작들을 포함하고 있습니다.</p>
+                <p>${article.videoArticleTitle}에 대한 상세 설명입니다. 이 영상은 ${article.videoArticlePart} 운동에 효과적인 동작들을 포함하고 있습니다.</p>
             </div>
 
 			<div class="reviews-container">
@@ -229,7 +228,7 @@ body {
                         </form>
                         <form method="post" action="main">
                             <input type="hidden" name="action" value="writeform">
-                            <input type="hidden" name="videoId" value="${video.id}">
+                            <input type="hidden" name="videoId" value="${article.videoArticleId}">
                             <button class="btn btn-write">
                                 <i class="bi bi-pencil-square me-1"></i> 리뷰 작성
                             </button>
@@ -258,7 +257,7 @@ body {
                                     </tr>
                                 </c:when>
                                 <c:otherwise>
-                                    <c:forEach var="item" items="${requestScope.reviews}" varStatus="status">
+                                    <c:forEach var="item" items="${reviews}" varStatus="status">
                                         <tr>
                                             <td class="text-center">${status.count}</td>
                                             <td>

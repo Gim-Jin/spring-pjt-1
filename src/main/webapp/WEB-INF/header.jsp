@@ -15,7 +15,7 @@
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav me-auto">
 					<li class="nav-item">
-						<a class="nav-link fw-medium" href="index.jsp">
+						<a class="nav-link fw-medium" href="/index">
 							<i class="bi bi-house-door"></i> 홈
 						</a>
 					</li>

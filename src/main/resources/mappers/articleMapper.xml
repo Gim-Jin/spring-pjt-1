@@ -10,15 +10,15 @@
 		INSERT INTO video_article
 		(video_article_id,video_article_title,video_article_part,video_article_channel,video_article_url,video_article_views)
 		VALUES
-		(#{videoArticleId},#{videoArticleTitle},#{videoArticlePart},#{videoArticleChannel},#{videoArticleUrl},#{videoViewCnt})
+		(#{videoArticleId},#{videoArticleTitle},#{videoArticlePart},#{videoArticleChannel},#{videoArticleUrl},#{videoArticleViews})
 	</insert>
 
 	<!-- 한개 고르기 -->
 	<select id="selectById" parameterType="long"
 		resultType="VideoArticleDto">
-		SELECT video_article_id
+		SELECT *
 		FROM video_article
-		WHERE id =
+		WHERE video_article_id =
 		#{videoArticleId}
 	</select>
 
@@ -51,7 +51,7 @@
 		video_article_part= #{videoArticlePart},
 		video_article_channel = #{videoArticleChannel},
 		video_article_url = #{videoArticleUrl},
-		video_article_views = #{vidieoViewCnt}
+		video_article_views = #{videoArticleViews}
 		WHERE video_article_id = #{videoArticleId}
 	</update>
 	

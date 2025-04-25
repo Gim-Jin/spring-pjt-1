@@ -7,7 +7,7 @@ public class VideoArticleDto {
     private String videoArticlePart;
     private String videoArticleChannel;
     private String videoArticleUrl;
-    private int videoViewCnt;
+    private int videoArticleViews;
 
     public VideoArticleDto(){}
 
@@ -18,7 +18,7 @@ public class VideoArticleDto {
         this.videoArticlePart = videoArticlePart;
         this.videoArticleChannel = videoArticleChannel;
         this.videoArticleUrl = videoArticleUrl;
-        this.videoViewCnt = videoViewCnt;
+        this.videoArticleViews = videoViewCnt;
     }
 
     public long getVideoArticleId() {
@@ -61,18 +61,18 @@ public class VideoArticleDto {
         this.videoArticleUrl = videoArticleUrl;
     }
 
-    public int getVideoViewCnt() {
-        return videoViewCnt;
+    public int getVideoArticleViews() {
+        return videoArticleViews;
     }
 
-    public void setVideoViewCnt(int videoViewCnt) {
-        this.videoViewCnt = videoViewCnt;
+    public void setVideoArticleViews(int videoViewCnt) {
+        this.videoArticleViews = videoViewCnt;
     }
 
     @Override
     public String toString() {
         return "VideoArticleDto [videoArticleId=" + videoArticleId + ", videoArticleTitle=" + videoArticleTitle
                 + ", videoArticlePart=" + videoArticlePart + ", videoArticleChannel=" + videoArticleChannel
-                + ", videoArticleUrl=" + videoArticleUrl + ", videoViewCnt=" + videoViewCnt + "]";
+                + ", videoArticleUrl=" + videoArticleUrl + ", videoArticleViews=" + videoArticleViews + "]";
     }
 }
