@@ -3,8 +3,11 @@ package com.ssafy.ssafit.service.impl;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ssafy.ssafit.dto.UserDto;
+import com.ssafy.ssafit.exception.InvalidUserFormatException;
+import com.ssafy.ssafit.exception.UserNotFoundException;
 import com.ssafy.ssafit.repository.UserRepository;
 import com.ssafy.ssafit.service.UserService;
 
@@ -20,21 +23,36 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
+	@Transactional
 	public void registUser(UserDto user) {
+		
+		if(user == null) {
+			throw new InvalidUserFormatException();
+		}
 		
 		userRepository.insert(user);
 		
 	}
 
 	@Override
+	@Transactional
 	public void withdrawUser(String userEmail) {
+		
+		if(userEmail == null || userEmail.equals("")) {
+			throw new InvalidUserFormatException();
+		}
 		
 		userRepository.deleteUserByEmail(userEmail);
 		
 	}
 
 	@Override
+	@Transactional
 	public void modifyUser(UserDto user) {
+		
+		if(user == null) {
+			throw new InvalidUserFormatException();
+		}
 		
 		userRepository.update(user);
 		
@@ -50,21 +68,34 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public UserDto getUserByEmail(String userEmail) {
-
-		return userRepository.selectByEmail(userEmail);
+		
+		if(userEmail == null || userEmail.equals("")) {
+			throw new InvalidUserFormatException();
+		}
+		
+		UserDto result = userRepository.selectByEmail(userEmail);
+		
+		if(result == null) {
+			
+			throw new UserNotFoundException();
+			
+		}
+			
+		return result;
 		
 	}
 
 	@Override
 	public UserDto login(String userEmail, String userPassword) {
 		
-		UserDto user = userRepository.selectByEmail(userEmail);
+		UserDto result = userRepository.selectByEmail(userEmail);
 		
-		if(user != null && user.getUserPassword().equals(userPassword)) {
-			return user;
+		if(result != null && result.getUserPassword().equals(userPassword)) {
+			
+			return result;
 		}
 		
-		return null;
+		throw new UserNotFoundException();
 		
 	}
 	
