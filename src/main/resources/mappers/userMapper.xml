@@ -5,29 +5,28 @@
 <mapper namespace="com.ssafy.ssafit.repository.UserRepository">
 
 	<insert id="insert" parameterType="UserDto">
-		INSERT INTO users (user_email, user_password, user_nickname)
-		VALUES (#{userEmail}, #{userPassword}, #{userNickName})
-	</insert>
+    INSERT INTO users (user_email, user_password, user_nickname)
+    VALUES (#{userEmail}, #{userPassword}, #{userNickName})
+</insert>    
 
-	<select id="selectByEmail" parameterType="String"
-		resultType="UserDto">
-		SELECT *
-		FROM users
-		WHERE user_email = #{userEmail}
-	</select>
+<select id="selectByEmail" parameterType="String" resultType="UserDto">
+    SELECT *
+    FROM users
+    WHERE user_email = #{userEmail}
+</select>
 
-	<delete id="deleteuserByEmail" parameterType="String">
-		DELETE FROM users
-		WHERE user_email=#{email}
-	</delete>
+<delete id="deleteuserByEmail" parameterType="String">
+    DELETE FROM users
+    WHERE user_email=#{email}
+</delete>
 
-	<select id="selectAll" resultType="UserDto">
-		SELECT * from users
-	</select>
+<select id="selectAll" resultType="UserDto">
+    SELECT * from users
+</select>
 
-	<update id="update" parameterType="UserDto">
-		UPDATE users
-		SET user_nickname = #{userNickName}
-		WHERE user_id = #{userId}
-	</update>
+<update id="update" parameterType="UserDto">
+    UPDATE users
+    SET user_nickname = #{userNickName}
+    WHERE user_id = #{userId}
+</update>
 </mapper>
