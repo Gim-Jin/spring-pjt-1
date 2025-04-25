@@ -83,7 +83,7 @@ public class AdminController {
 
 		model.addAttribute("users", userService.getAllUser());
 
-		return "userList";
+		return "adminUserList";
 	}
 
 	// TODO : email로 받을지, id로 받을지 결정해야함.
@@ -104,7 +104,7 @@ public class AdminController {
 
 		UserDto user = userService.getUserByEmail(email);
 
-		model.addAttribute(user);
+		model.addAttribute("user",user);
 
 		return "adminUserModifyForm";
 

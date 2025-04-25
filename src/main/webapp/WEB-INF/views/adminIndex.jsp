@@ -381,7 +381,7 @@
                 <div class="admin-card">
                     <div class="admin-card-header">
                         <span>최근 가입 회원</span>
-                        <a href="${pageContext.request.contextPath}/admin/users" class="admin-btn admin-btn-primary">
+                        <a href="/admin/users" class="admin-btn admin-btn-primary">
                             <i class="bi bi-people"></i> 회원 관리
                         </a>
                     </div>
@@ -391,7 +391,7 @@
                                 <tr>
                                     <th>닉네임</th>
                                     <th>이메일</th>
-                                    <th>비밀번</th>
+                                    <th>비밀번호</th>
                                     <th>관리</th>
                                 </tr>
                             </thead>
