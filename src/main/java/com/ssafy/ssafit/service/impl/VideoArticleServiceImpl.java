@@ -53,5 +53,6 @@ public class VideoArticleServiceImpl implements VideoArticleService {
 	public List<VideoArticleDto> selectAllByviewcnt() {
 		return videoRepository.selectAllByviewcnt();
 	}
+	
 
 }
