@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.ssafit.repository.CommentRepository">
+
+	<insert id="insert" parameterType="CommentDto">
+		INSERT INTO comment
+		(comment_id,user_id,video_article_id,comment_content,write_date)
+		VALUES
+		(#{commentId},#{userId},#{videoArticleId},#{reviewContent},#{writeDate})
+	</insert>
+
+	<update id="update" parameterType="CommentDto">
+		UPDATE comment
+		SET
+		comment_content = #{commentContent},
+		write_date = NOW()
+		WHERE comment_id
+		= #{commentId}
+	</update>
+
+	<delete id="delete" parameterType="long">
+		DELETE FROM comment
+		WHERE
+		comment_id =#{commentId}
+
+	</delete>
+
+
+	<select id="selectAll" parameterType="long"
+		resultType="CommentDto">
+		SELECT *
+		FROM comment
+		WHERE video_article_id =
+		#{videoArticleid}
+	</select>
+
+	<select id="select" parameterType="long" resultType="CommentDto">
+		SELECT *
+		FROM comment
+		WHERE comment_id = #{commentId}
+	</select>
+
+</mapper>

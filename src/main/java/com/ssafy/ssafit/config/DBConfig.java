@@ -6,5 +6,5 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @MapperScan(basePackages = "com.ssafy.ssafit.repository")
 public class DBConfig {
-	
+
 }
