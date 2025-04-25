@@ -54,6 +54,16 @@ public class AdminController {
 		return "redirect:/admin/login";
 	}
 	
+	@GetMapping("/logout")
+	public String adminLogout(HttpSession session) {
+		
+		session.invalidate();
+		
+		return "redirect:/admin/index";
+		
+	}
+	
+	
 	@GetMapping("/users")
 	public String userList(Model model) {
 		
