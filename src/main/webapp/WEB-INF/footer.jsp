@@ -1,77 +1,62 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<footer class="bg-dark text-white py-5 mt-5">
+<footer class="bg-dark text-white py-5">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4 mb-4 mb-md-0">
-				<div class="d-flex align-items-center mb-3">
-					<img src="${pageContext.request.contextPath}/assets/images/logo-white.png" alt="SSAFIT 로고" height="40" class="me-2">
-					<h5 class="mb-0 text-white">SSAFIT</h5>
+				<h5 class="text-uppercase mb-4">
+					<span class="text-primary">SSA</span><span class="text-white">FIT</span></h5>
+				<p class="mb-3">건강한 개발자 생활을 위한 운동 플랫폼</p>
+				<p class="mb-3">
+					<i class="bi bi-geo-alt me-2"></i>대전광역시 유성구 덕명동 124</p>
+				<p class="mb-3">
+					<i class="bi bi-envelope me-2"></i>contact@ssafit.com</p>
+				<p class="mb-3">
+					<i class="bi bi-telephone me-2"></i>1588-3357</p>
+			</div>
+			
+			<div class="col-md-4 mb-4 mb-md-0">
+				<h5 class="text-uppercase mb-4">바로가기</h5>
+				<ul class="list-unstyled">
+					<li class="mb-2">
+						<a href="index.jsp" class="text-white text-decoration-none"><i class="bi bi-chevron-right me-2"></i>홈</a></li>
+					<li class="mb-2">
+						<a href="#" class="text-white text-decoration-none"><i class="bi bi-chevron-right me-2"></i>운동 영상</a></li>
+					<li class="mb-2">
+						<a href="#" class="text-white text-decoration-none"><i class="bi bi-chevron-right me-2"></i>커뮤니티</a></li>
+					<li class="mb-2">
+						<a href="#" class="text-white text-decoration-none"><i class="bi bi-chevron-right me-2"></i>자주 묻는 질문</a></li>
+					<li class="mb-2">
+						<a href="#" class="text-white text-decoration-none"><i class="bi bi-chevron-right me-2"></i>개인정보처리방침</a></li>
+				</ul>
+			</div>
+			
+			<div class="col-md-4">
+				<h5 class="text-uppercase mb-4">소셜 미디어</h5>
+				<div class="d-flex">
+					<a href="#" class="text-white me-3 fs-4"><i class="bi bi-facebook"></i></a>
+					<a href="#" class="text-white me-3 fs-4"><i class="bi bi-twitter"></i></a>
+					<a href="#" class="text-white me-3 fs-4"><i class="bi bi-instagram"></i></a>
+					<a href="#" class="text-white me-3 fs-4"><i class="bi bi-youtube"></i></a>
+					<a href="#" class="text-white fs-4"><i class="bi bi-github"></i></a>
 				</div>
-				<p class="text-muted">당신의 건강한 라이프스타일을 위한<br>최고의 운동 플랫폼</p>
-				<div class="social-icons mt-3">
-					<a href="#" class="text-white me-3"><i class="bi bi-facebook fs-5"></i></a>
-					<a href="#" class="text-white me-3"><i class="bi bi-instagram fs-5"></i></a>
-					<a href="#" class="text-white me-3"><i class="bi bi-youtube fs-5"></i></a>
-					<a href="#" class="text-white"><i class="bi bi-twitter-x fs-5"></i></a>
+				<div class="mt-4">
+					<h6 class="mb-3">뉴스레터 구독</h6>
+					<form>
+						<div class="input-group">
+							<input type="email" class="form-control" placeholder="이메일 주소">
+							<button class="btn btn-primary" type="submit">구독</button>
+						</div>
+					</form>
 				</div>
-			</div>
-			<div class="col-md-2 mb-4 mb-md-0">
-				<h6 class="text-uppercase mb-3">사이트맵</h6>
-				<ul class="list-unstyled">
-					<li class="mb-2"><a href="${pageContext.request.contextPath}/" class="text-muted text-decoration-none">홈</a></li>
-					<li class="mb-2"><a href="${pageContext.request.contextPath}/video/list" class="text-muted text-decoration-none">운동 영상</a></li>
-					<li class="mb-2"><a href="${pageContext.request.contextPath}/community" class="text-muted text-decoration-none">커뮤니티</a></li>
-					<li><a href="${pageContext.request.contextPath}/about" class="text-muted text-decoration-none">소개</a></li>
-				</ul>
-			</div>
-			<div class="col-md-2 mb-4 mb-md-0">
-				<h6 class="text-uppercase mb-3">카테고리</h6>
-				<ul class="list-unstyled">
-					<li class="mb-2"><a href="${pageContext.request.contextPath}/video/list?part=상체" class="text-muted text-decoration-none">상체 운동</a></li>
-					<li class="mb-2"><a href="${pageContext.request.contextPath}/video/list?part=하체" class="text-muted text-decoration-none">하체 운동</a></li>
-					<li class="mb-2"><a href="${pageContext.request.contextPath}/video/list?part=전신" class="text-muted text-decoration-none">전신 운동</a></li>
-					<li><a href="${pageContext.request.contextPath}/video/list?part=스트레칭" class="text-muted text-decoration-none">스트레칭</a></li>
-				</ul>
-			</div>
-			<div class="col-md-2 mb-4 mb-md-0">
-				<h6 class="text-uppercase mb-3">고객 지원</h6>
-				<ul class="list-unstyled">
-					<li class="mb-2"><a href="${pageContext.request.contextPath}/faq" class="text-muted text-decoration-none">자주 묻는 질문</a></li>
-					<li class="mb-2"><a href="${pageContext.request.contextPath}/contact" class="text-muted text-decoration-none">문의하기</a></li>
-					<li class="mb-2"><a href="${pageContext.request.contextPath}/terms" class="text-muted text-decoration-none">이용약관</a></li>
-					<li><a href="${pageContext.request.contextPath}/privacy" class="text-muted text-decoration-none">개인정보처리방침</a></li>
-				</ul>
-			</div>
-			<div class="col-md-2">
-				<h6 class="text-uppercase mb-3">뉴스레터</h6>
-				<p class="text-muted small">최신 운동 팁과 건강 정보를 받아보세요</p>
-				<form action="${pageContext.request.contextPath}/newsletter/subscribe" method="post">
-					<div class="input-group mb-3">
-						<input type="email" class="form-control form-control-sm bg-dark text-white border-secondary" 
-							   placeholder="이메일 주소" aria-label="Email" required>
-						<button class="btn btn-outline-light btn-sm" type="submit">구독</button>
-					</div>
-				</form>
 			</div>
 		</div>
-		<hr class="my-4 border-secondary">
-		<div class="row align-items-center">
-			<div class="col-md-6 text-center text-md-start">
-				<p class="small text-muted mb-0">&copy; 2023 SSAFIT. All rights reserved.</p>
-			</div>
-			<div class="col-md-6 text-center text-md-end">
-				<p class="small text-muted mb-0">
-					<a href="${pageContext.request.contextPath}/terms" class="text-muted text-decoration-none me-3">이용약관</a>
-					<a href="${pageContext.request.contextPath}/privacy" class="text-muted text-decoration-none">개인정보처리방침</a>
-				</p>
-			</div>
+		
+		<hr class="my-4 bg-light">
+		
+		<div class="text-center">
+			<p class="mb-0">&copy; 2025 SSAFY 13 Daejeon class 3 Kim Square. All Rights Reserved.</p>
 		</div>
 	</div>
 </footer>
-
-<!-- Bootstrap JS와 의존성 -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<!-- 커스텀 스크립트 -->
-<script src="${pageContext.request.contextPath}/assets/js/main.js"></script> 
