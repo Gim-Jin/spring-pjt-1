@@ -47,7 +47,7 @@
 </head>
 <body>
     <!-- 헤더 포함 -->
-    <jsp:include page="/WEB-INF/header.jsp" />
+    <%@ include file="/WEB-INF/header.jsp" %>
     
     <!-- 메인 영역 -->
     <main>
@@ -58,7 +58,7 @@
                 <p class="lead mb-4">SSAFIT과 함께 운동하고 더 나은 삶을 경험하세요.</p>
                 <div class="d-flex justify-content-center">
                     <a href="#exercise-section" class="btn btn-primary me-2 px-4 py-2">운동 시작하기</a>
-                    <a href="${pageContext.request.contextPath}/user/register" class="btn btn-outline-light px-4 py-2">회원가입</a>
+                    <a href="/user/register" class="btn btn-outline-light px-4 py-2">회원가입</a>
                 </div>
             </div>
         </section>
@@ -77,7 +77,7 @@
                                 </div>
                                 <h4 class="card-title">상체 운동</h4>
                                 <p class="card-text text-muted">팔, 가슴, 어깨, 등을 강화하는 운동</p>
-                                <a href="${pageContext.request.contextPath}/video/list?category=상체" class="btn btn-outline-primary mt-3">영상 보기</a>
+                                <a href="/video/list?category=상체" class="btn btn-outline-primary mt-3">영상 보기</a>
                             </div>
                         </div>
                     </div>
@@ -91,7 +91,7 @@
                                 </div>
                                 <h4 class="card-title">하체 운동</h4>
                                 <p class="card-text text-muted">다리, 엉덩이, 허벅지를 강화하는 운동</p>
-                                <a href="${pageContext.request.contextPath}/video/list?category=하체" class="btn btn-outline-primary mt-3">영상 보기</a>
+                                <a href="/video/list?category=하체" class="btn btn-outline-primary mt-3">영상 보기</a>
                             </div>
                         </div>
                     </div>
@@ -105,7 +105,7 @@
                                 </div>
                                 <h4 class="card-title">전신 운동</h4>
                                 <p class="card-text text-muted">전신 근육을 강화하는 종합적인 운동</p>
-                                <a href="${pageContext.request.contextPath}/video/list?category=전신" class="btn btn-outline-primary mt-3">영상 보기</a>
+                                <a href="/video/list?category=전신" class="btn btn-outline-primary mt-3">영상 보기</a>
                             </div>
                         </div>
                     </div>
@@ -119,7 +119,7 @@
                                 </div>
                                 <h4 class="card-title">유산소 운동</h4>
                                 <p class="card-text text-muted">심폐 기능을 향상시키고 체지방을 줄이는 운동</p>
-                                <a href="${pageContext.request.contextPath}/video/list?category=유산소" class="btn btn-outline-primary mt-3">영상 보기</a>
+                                <a href="/video/list?category=유산소" class="btn btn-outline-primary mt-3">영상 보기</a>
                             </div>
                         </div>
                     </div>
@@ -133,7 +133,7 @@
                                 </div>
                                 <h4 class="card-title">스트레칭</h4>
                                 <p class="card-text text-muted">유연성을 높이고 근육 통증을 완화하는 운동</p>
-                                <a href="${pageContext.request.contextPath}/video/list?category=스트레칭" class="btn btn-outline-primary mt-3">영상 보기</a>
+                                <a href="/video/list?category=스트레칭" class="btn btn-outline-primary mt-3">영상 보기</a>
                             </div>
                         </div>
                     </div>
@@ -146,7 +146,7 @@
             <div class="container">
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <h2>인기 영상</h2>
-                    <a href="${pageContext.request.contextPath}/video/list" class="btn btn-outline-primary">모든 영상 보기</a>
+                    <a href="/video/list" class="btn btn-outline-primary">모든 영상 보기</a>
                 </div>
                 <div class="row g-4">
                     <!-- 인기 영상 카드 1 -->
@@ -162,7 +162,7 @@
                                 <p class="card-text">하루 15분 투자로 전신 다이어트 효과를 보는 최고의 운동 루틴</p>
                             </div>
                             <div class="card-footer bg-white">
-                                <a href="${pageContext.request.contextPath}/video/detail?id=1" class="btn btn-sm btn-primary w-100">영상 보기</a>
+                                <a href="/video/detail?id=1" class="btn btn-sm btn-primary w-100">영상 보기</a>
                             </div>
                         </div>
                     </div>
@@ -180,7 +180,7 @@
                                 <p class="card-text">효과적인 복부 운동으로 탄탄한 코어 근육을 만들어보세요</p>
                             </div>
                             <div class="card-footer bg-white">
-                                <a href="${pageContext.request.contextPath}/video/detail?id=2" class="btn btn-sm btn-primary w-100">영상 보기</a>
+                                <a href="/video/detail?id=2" class="btn btn-sm btn-primary w-100">영상 보기</a>
                             </div>
                         </div>
                     </div>
@@ -198,7 +198,7 @@
                                 <p class="card-text">집에서 간단히 할 수 있는 덤벨을 이용한 상체 근력 운동</p>
                             </div>
                             <div class="card-footer bg-white">
-                                <a href="${pageContext.request.contextPath}/video/detail?id=3" class="btn btn-sm btn-primary w-100">영상 보기</a>
+                                <a href="/video/detail?id=3" class="btn btn-sm btn-primary w-100">영상 보기</a>
                             </div>
                         </div>
                     </div>
@@ -219,7 +219,7 @@
                             <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i> 효과적인 운동 루틴 찾기</li>
                             <li><i class="bi bi-check-circle-fill text-primary me-2"></i> 건강한 생활 습관 형성</li>
                         </ul>
-                        <a href="${pageContext.request.contextPath}/board/list" class="btn btn-primary px-4">커뮤니티 방문하기</a>
+                        <a href="/board/list" class="btn btn-primary px-4">커뮤니티 방문하기</a>
                     </div>
                     <div class="col-lg-6 mt-4 mt-lg-0">
                         <img src="https://images.unsplash.com/photo-1593079831268-3381b0db4a77?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1450&q=80" 
@@ -231,7 +231,7 @@
     </main>
     
     <!-- 푸터 포함 -->
-    <jsp:include page="/WEB-INF/footer.jsp" />
+    <%@ include file="/WEB-INF/footer.jsp" %>
     
     <!-- Bootstrap JS 및 Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

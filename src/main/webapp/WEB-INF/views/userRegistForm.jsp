@@ -140,7 +140,7 @@
             </div>
             <h2 class="form-title fw-bold">회원가입</h2>
             
-            <form action="${pageContext.request.contextPath}/users/regist" method="post" id="registForm">
+            <form action="/users/regist" method="post" id="registForm">
                 <div class="form-group">
                     <label for="userEmail" class="form-label">이메일</label>
                     <div class="input-group">
@@ -198,7 +198,7 @@
                 <button type="submit" class="btn btn-register">가입하기</button>
                 
                 <div class="register-footer">
-                    이미 계정이 있으신가요? <a href="${pageContext.request.contextPath}/users/login">로그인하기</a>
+                    이미 계정이 있으신가요? <a href="/users/login">로그인하기</a>
                 </div>
             </form>
         </div>
