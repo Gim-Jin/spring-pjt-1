@@ -19,7 +19,7 @@ public class AdminDto {
 		this.adminLoginId = adminLoginId;
 		this.adminPassword = adminPassword;
 	}
-
+	
 	public long getAdminId() {
 		return adminId;
 	}

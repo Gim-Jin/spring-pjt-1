@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.ssafit.repository.UserRepository">
+
+	<insert id="insert" parameterType="UserDto">
+		INSERT INTO users (id, password, name, curriculum_code)
+		VALUES (#{id},#{password},#{name},#{curriculumCode})
+	</insert>	
+	
+	<select id="selectByEmail" parameterType="String" resultType="UserDto">
+		SELECT id, name
+		FROM users
+		WHERE id = #{id} AND password = #{password}
+	</select>
+	
+	<delete id="deleteuserByEmail" parameterType="String">
+		DELETE FROM users
+		WHERE user_email=#{email}
+	</delete>
+	
+	<select id="selectAll" resultType="UserDto">
+		SELECT u.id id, u.password password, u.name name, c.name curriculumName
+		FROM users u, curriculum c
+		WHERE u.curriculum_code = c.code
+	</select>
+	
+	<update id="update" parameterType="UserDto">
+		UPDATE users
+		SET user_nickname = #{userNickName}
+		WHERE user_id = #{userId}
+	</update>
+	
+</mapper>
