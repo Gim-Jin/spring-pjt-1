@@ -1,5 +1,7 @@
 package com.ssafy.ssafit.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,114 +12,145 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ssafy.ssafit.dto.UserDto;
+import com.ssafy.ssafit.dto.VideoArticleDto;
 import com.ssafy.ssafit.service.AdminService;
 import com.ssafy.ssafit.service.UserService;
+import com.ssafy.ssafit.service.VideoArticleService;
 
 import jakarta.servlet.http.HttpSession;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-	
+
 	private final UserService userService;
-	
+
 	private final AdminService adminService;
-	
+
+	private final VideoArticleService videoArticleService;
+
 	// 생성자 주입.
-	public AdminController(UserService userService, AdminService adminService) {
-		
+	public AdminController(UserService userService, AdminService adminService,
+			VideoArticleService videoArticleService) {
+
 		this.userService = userService;
-		
+
 		this.adminService = adminService;
-		
+
+		this.videoArticleService = videoArticleService;
+
 	}
-	
+
 	@GetMapping("/index")
 	public String adminIndex() {
 		return "adminIndex";
 	}
-	
+
 	@GetMapping("/login")
 	public String adminLoginForm() {
 		return "adminLoginForm";
 	}
-	
+
 	@PostMapping("/login")
-	public String adminLogin(@RequestParam("loginId") String loginId, @RequestParam("password") String password, HttpSession session) {
-		
-		if(adminService.adminLogin(loginId, password)) {
-			
+	public String adminLogin(@RequestParam("loginId") String loginId, @RequestParam("password") String password,
+			HttpSession session) {
+
+		if (adminService.adminLogin(loginId, password)) {
+
 			session.setAttribute("role", "admin");
-			
+
 			return "redirect:/admin/index";
 		}
-		
+
 		return "redirect:/admin/login";
 	}
-	
+
 	@GetMapping("/logout")
 	public String adminLogout(HttpSession session) {
-		
+
 		session.invalidate();
-		
+
 		return "redirect:/admin/index";
-		
+
 	}
-	
-	
+
 	@GetMapping("/users")
 	public String userList(Model model) {
-		
+
 		model.addAttribute("users", userService.getAllUser());
-		
+
 		return "userList";
 	}
-	
+
 	// TODO : email로 받을지, id로 받을지 결정해야함.
 	@GetMapping("/users/{email}")
 	public String userDetail(@PathVariable("email") String email, Model model) {
-			
+
 		UserDto user = userService.getUserByEmail(email);
-		
+
 		// 관리자는 유저의 모든 것을 알고 있어야 함. (오늘 프로젝트에서는 ㅎㅎ 에초에 DB에 암호화 해서 넣어야함.)
-		model.addAttribute("user",user);
-		
+		model.addAttribute("user", user);
+
 		return "adminUserDetail";
-		
-		
+
 	}
-	
+
 	@GetMapping("/users/{email}/modify")
 	public String adminUserModifyForm(@PathVariable("email") String email, Model model) {
-		
+
 		UserDto user = userService.getUserByEmail(email);
-		
+
 		model.addAttribute(user);
-		
+
 		return "adminUserModifyForm";
-		
+
 	}
-	
+
 	@PostMapping("/users/{email}/modify")
 	public String adminUserModify(@ModelAttribute UserDto user) {
-		
+
 		userService.modifyUser(user);
-		
+
 		// 수정 후 이메일 상세 페이지로 반환.
-		return "redirect:/admin/users/"+ user.getUserEmail();
-		
+		return "redirect:/admin/users/" + user.getUserEmail();
+
 	}
-	
+
 	@GetMapping("/users/{email}/delete")
 	public String adminUserDelete(@PathVariable("email") String email) {
-		
+
 		userService.withdrawUser(email);
-		
+
 		return "redirect:/admin/users";
-		
+
 	}
-	
-	
-	
-	
+
+	// 글 조회
+	@GetMapping("/articles")
+	public String articleList(Model model) {
+		List<VideoArticleDto> articles = videoArticleService.selectAll();
+		model.addAttribute("articles", articles);
+		return "admin/articleList";
+	}
+
+	@GetMapping("/articles/registform")
+	public String articleRegistForm() {
+		return "admin/articleRegistForm";
+	}
+
+	// 글쓰기(관리자만)
+	@PostMapping("/articles/regist")
+	public String createArticle(@ModelAttribute VideoArticleDto videoarticle) {
+		videoArticleService.createArticle(videoarticle);
+		return "redirect:/admin/articles";
+	}
+
+	// 글삭제(관리자만)
+	@PostMapping("/articles/{id}/delete")
+	public String postMethodName(@PathVariable long id) {
+		videoArticleService.deleteArticle(id);
+		return "redirect:/admin/articles";
+	}
+
 }
