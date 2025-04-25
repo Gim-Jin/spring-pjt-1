@@ -14,6 +14,7 @@ import com.ssafy.ssafit.dto.VideoArticleDto;
 import com.ssafy.ssafit.service.CommentService;
 import com.ssafy.ssafit.service.VideoArticleService;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class VideoArticleController {
@@ -27,13 +28,13 @@ public class VideoArticleController {
 	}
 
 	// 전체보기
-	@GetMapping({"/index","/"})
+	@GetMapping({ "/index", "/" })
 	public String selectAllArticles(Model model) {
 		List<VideoArticleDto> articles = videoService.selectAll();
 		for (VideoArticleDto article : articles) {
-		    String url = article.getVideoArticleUrl();
-		    String videoId = url.substring(url.lastIndexOf("/") + 1);
-		    article.setVideoArticleUrl(videoId);
+			String url = article.getVideoArticleUrl();
+			String videoId = url.substring(url.lastIndexOf("/") + 1);
+			article.setVideoArticleUrl(videoId);
 		}
 		model.addAttribute("articles", articles);
 		return "index";
@@ -81,22 +82,34 @@ public class VideoArticleController {
 
 	@GetMapping("/articles/{articleId}/comments/{commentId}/edit")
 	public String editCommentForm(@PathVariable long articleId, @PathVariable long commentId, Model model) {
-	    CommentDto comment = commentService.select(commentId);
-	    model.addAttribute("comment", comment);
-	    return "comment/editForm"; // JSP에서 수정 폼 렌더링
+		CommentDto comment = commentService.select(commentId);
+		model.addAttribute("comment", comment);
+		return "comment/editForm"; // JSP에서 수정 폼 렌더링
 	}
 
-	
 	// 댓글 수정
 	@PostMapping("/articles/{articleId}/comments/{commentId}/update")
-	public String updateComment(@PathVariable long articleId,
-	                            @PathVariable long commentId,
-	                            @ModelAttribute CommentDto commentDto) {
-	    commentDto.setCommentId(commentId);         
-	    commentDto.setVideoArticleId(articleId);    
-	    commentService.updateComment(commentDto);
-	    return "redirect:/articles/" + articleId;
+	public String updateComment(@PathVariable long articleId, @PathVariable long commentId,
+			@ModelAttribute CommentDto commentDto) {
+		commentDto.setCommentId(commentId);
+		commentDto.setVideoArticleId(articleId);
+		commentService.updateComment(commentDto);
+		return "redirect:/articles/" + articleId;
 	}
 
+	// 부위별 조회하기
+	@GetMapping("/video/list")
+	public String videoListByCategory(@RequestParam String category, Model model) {
+		List<VideoArticleDto> articles = videoService.selectVideosByPart(category);
+		// URL에서 비디오 ID 추출
+		for (VideoArticleDto article : articles) {
+			String url = article.getVideoArticleUrl();
+			String videoId = url.substring(url.lastIndexOf("/") + 1);
+			article.setVideoArticleUrl(videoId);
+		}
+		model.addAttribute("articles", articles);
+		model.addAttribute("selectedPart", category);
+		return "index";
+	}
 
 }

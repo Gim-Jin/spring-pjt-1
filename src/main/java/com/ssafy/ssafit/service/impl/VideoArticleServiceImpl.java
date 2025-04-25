@@ -53,6 +53,11 @@ public class VideoArticleServiceImpl implements VideoArticleService {
 	public List<VideoArticleDto> selectAllByviewcnt() {
 		return videoRepository.selectAllByviewcnt();
 	}
+
+	@Override
+	public List<VideoArticleDto> selectVideosByPart(String part) {
+		return videoRepository.selectVideosByPart(part);
+	}
 	
 
 }

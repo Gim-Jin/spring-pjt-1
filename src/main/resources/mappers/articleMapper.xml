@@ -59,4 +59,11 @@
 		DELECT FROM video_article
 		WHERE video_article_id = #{videoArticleId}
 	</delete>
+	
+	<select id="selectVideosByPart" parameterType="String">
+		SELECT *
+		FROM video_article
+		WHERE video_article_part = #{Part}
+	</select>
+
 </mapper>
