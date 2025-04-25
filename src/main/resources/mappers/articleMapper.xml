@@ -8,9 +8,9 @@
 	<!-- 게시글 생성하기 -->
 	<insert id="insert" parameterType="VideoArticleDto">
 		INSERT INTO video_article
-		(video_article_id,video_article_title,video_article_part,video_article_channel,video_article_url,video_article_views)
+		(video_article_title,video_article_part,video_article_channel,video_article_url)
 		VALUES
-		(#{videoArticleId},#{videoArticleTitle},#{videoArticlePart},#{videoArticleChannel},#{videoArticleUrl},#{videoArticleViews})
+		(#{videoArticleTitle},#{videoArticlePart},#{videoArticleChannel},#{videoArticleUrl})
 	</insert>
 
 	<!-- 한개 고르기 -->
@@ -56,7 +56,7 @@
 	</update>
 	
 	<delete id="delete" parameterType="long">
-		DELECT FROM video_article
+		DELETE FROM video_article
 		WHERE video_article_id = #{videoArticleId}
 	</delete>
 	

@@ -167,7 +167,7 @@
             </div>
             <h2 class="admin-login-title fw-bold">관리자 로그인</h2>
             
-            <form action="${pageContext.request.contextPath}/admin/login" method="post">
+            <form action="/admin/login" method="post">
                 <div class="form-group">
                     <label for="loginId" class="form-label">관리자 ID</label>
                     <div class="input-group">

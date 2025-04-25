@@ -306,17 +306,18 @@
                 운동 영상 정보 입력
             </div>
             <div class="admin-card-body">
-                <form action="${pageContext.request.contextPath}/admin/articles/regist" method="post" id="videoForm">
+                <form action="/admin/articles/regist" method="post" id="videoForm">
                     <div class="form-group">
                         <label for="title" class="form-label">영상 제목</label>
-                        <input type="text" class="form-control" id="title" name="title" placeholder="영상 제목을 입력하세요" required>
+                        <input type="text" class="form-control" id="title" name="videoArticleTitle" placeholder="영상 제목을 입력하세요" required>
+                        <input type="text" class="form-control" id="title" name="videoArticleChannel" placeholder="영상 채널명 입력하세요" required>
                     </div>
                     
                     <div class="form-group">
                         <label for="url" class="form-label">YouTube 임베드 URL</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi bi-youtube"></i></span>
-                            <input type="text" class="form-control" id="url" name="url" placeholder="예: https://www.youtube.com/embed/VIDEO_ID" required>
+                            <input type="text" class="form-control" id="url" name="videoArticleUrl" placeholder="예: https://www.youtube.com/embed/VIDEO_ID" required>
                             <button class="btn btn-outline-primary" type="button" id="previewBtn">미리보기</button>
                         </div>
                         <div class="form-text">YouTube 영상의 임베드 URL을 입력하세요. (예: https://www.youtube.com/embed/VIDEO_ID)</div>
@@ -335,7 +336,7 @@
                     
                     <div class="form-group">
                         <label for="part" class="form-label">운동 부위</label>
-                        <select class="form-select" id="part" name="part" required>
+                        <select class="form-select" id="part" name="videoArticlePart" required>
                             <option value="" selected disabled>운동 부위를 선택하세요</option>
                             <option value="전신">전신</option>
                             <option value="상체">상체</option>
@@ -350,7 +351,7 @@
                     </div>
                     
                     <div class="d-flex justify-content-end mt-4">
-                        <a href="${pageContext.request.contextPath}/admin/articles" class="btn btn-admin-cancel me-2">취소</a>
+                        <a href="/admin/articles" class="btn btn-admin-cancel me-2">취소</a>
                         <button type="submit" class="btn btn-admin-submit">등록하기</button>
                     </div>
                 </form>

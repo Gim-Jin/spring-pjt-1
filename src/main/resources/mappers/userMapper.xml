@@ -15,7 +15,7 @@
     WHERE user_email = #{userEmail}
 </select>
 
-<delete id="deleteuserByEmail" parameterType="String">
+<delete id="deleteUserByEmail" parameterType="String">
     DELETE FROM users
     WHERE user_email=#{email}
 </delete>
@@ -29,4 +29,7 @@
     SET user_nickname = #{userNickName}
     WHERE user_id = #{userId}
 </update>
+
+
+
 </mapper>

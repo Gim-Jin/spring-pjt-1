@@ -12,13 +12,13 @@ public class VideoArticleDto {
     public VideoArticleDto(){}
 
     public VideoArticleDto(long videoArticleId, String videoArticleTitle, String videoArticlePart,
-                           String videoArticleChannel, String videoArticleUrl, int videoViewCnt) {
+                           String videoArticleChannel, String videoArticleUrl, int videoArticleViews) {
         this.videoArticleId = videoArticleId;
         this.videoArticleTitle = videoArticleTitle;
         this.videoArticlePart = videoArticlePart;
         this.videoArticleChannel = videoArticleChannel;
         this.videoArticleUrl = videoArticleUrl;
-        this.videoArticleViews = videoViewCnt;
+        this.videoArticleViews = videoArticleViews;
     }
 
     public long getVideoArticleId() {

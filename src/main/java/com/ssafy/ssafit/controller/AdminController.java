@@ -18,7 +18,6 @@ import com.ssafy.ssafit.service.UserService;
 import com.ssafy.ssafit.service.VideoArticleService;
 
 import jakarta.servlet.http.HttpSession;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 @RequestMapping("/admin")
@@ -43,7 +42,11 @@ public class AdminController {
 	}
 
 	@GetMapping("/index")
-	public String adminIndex() {
+	public String adminIndex(Model model) {
+			
+		model.addAttribute("users", userService.getAllUser());
+		model.addAttribute("articles", videoArticleService.selectAll());
+		
 		return "adminIndex";
 	}
 
@@ -71,7 +74,7 @@ public class AdminController {
 
 		session.invalidate();
 
-		return "redirect:/admin/index";
+		return "redirect:/admin/login";
 
 	}
 
@@ -80,7 +83,7 @@ public class AdminController {
 
 		model.addAttribute("users", userService.getAllUser());
 
-		return "userList";
+		return "adminUserList";
 	}
 
 	// TODO : email로 받을지, id로 받을지 결정해야함.
@@ -101,7 +104,7 @@ public class AdminController {
 
 		UserDto user = userService.getUserByEmail(email);
 
-		model.addAttribute(user);
+		model.addAttribute("user",user);
 
 		return "adminUserModifyForm";
 
@@ -131,12 +134,12 @@ public class AdminController {
 	public String articleList(Model model) {
 		List<VideoArticleDto> articles = videoArticleService.selectAll();
 		model.addAttribute("articles", articles);
-		return "admin/articleList";
+		return "adminArticleList";
 	}
 
 	@GetMapping("/articles/registform")
 	public String articleRegistForm() {
-		return "admin/articleRegistForm";
+		return "articleRegistForm";
 	}
 
 	// 글쓰기(관리자만)
@@ -147,9 +150,23 @@ public class AdminController {
 	}
 
 	// 글삭제(관리자만)
-	@PostMapping("/articles/{id}/delete")
-	public String postMethodName(@PathVariable long id) {
+	@GetMapping("/articles/delete")
+	public String postMethodName(@RequestParam long id) {
 		videoArticleService.deleteArticle(id);
+		return "redirect:/admin/articles";
+	}
+	
+	// 영상 수정
+	@GetMapping("/articles/edit")
+	public String editForm(@RequestParam long id,Model model) {
+		model.addAttribute("article",videoArticleService.detailArticle(id));
+		return "articleEditForm";
+	}
+	
+	// 영상 수정
+	@PostMapping("/articles/edit")
+	public String edit(@ModelAttribute VideoArticleDto videoArticleDto) {
+		videoArticleService.updateArticle(videoArticleDto);
 		return "redirect:/admin/articles";
 	}
 

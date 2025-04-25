@@ -286,17 +286,17 @@
         
         <ul class="admin-nav">
             <li class="admin-nav-item">
-                <a href="${pageContext.request.contextPath}/admin/index" class="admin-nav-link active">
+                <a href="/admin/index" class="admin-nav-link active">
                     <i class="bi bi-speedometer2"></i> 대시보드
                 </a>
             </li>
             <li class="admin-nav-item">
-                <a href="${pageContext.request.contextPath}/admin/users" class="admin-nav-link">
+                <a href="/admin/users" class="admin-nav-link">
                     <i class="bi bi-people"></i> 회원 관리
                 </a>
             </li>
             <li class="admin-nav-item">
-                <a href="${pageContext.request.contextPath}/admin/articles" class="admin-nav-link">
+                <a href=/admin/articles" class="admin-nav-link">
                     <i class="bi bi-film"></i> 운동 영상 관리
                 </a>
             </li>
@@ -381,7 +381,7 @@
                 <div class="admin-card">
                     <div class="admin-card-header">
                         <span>최근 가입 회원</span>
-                        <a href="${pageContext.request.contextPath}/admin/users" class="admin-btn admin-btn-primary">
+                        <a href="/admin/users" class="admin-btn admin-btn-primary">
                             <i class="bi bi-people"></i> 회원 관리
                         </a>
                     </div>
@@ -389,58 +389,24 @@
                         <table class="admin-recent-table">
                             <thead>
                                 <tr>
-                                    <th>이름</th>
+                                    <th>닉네임</th>
                                     <th>이메일</th>
-                                    <th>등록일</th>
+                                    <th>비밀번호</th>
                                     <th>관리</th>
                                 </tr>
                             </thead>
                             <tbody>
+                            	<c:forEach var="user" items="${users }">
                                 <tr>
-                                    <td>홍길동</td>
-                                    <td>hong@example.com</td>
-                                    <td>2023-05-15</td>
+                                    <td>${user.userNickName }</td>
+                                    <td>${user.userEmail }</td>
+                                    <td>${user.userPassword }</td>
                                     <td>
                                         <a href="#" class="text-primary me-2"><i class="bi bi-pencil-square"></i></a>
                                         <a href="#" class="text-danger"><i class="bi bi-trash"></i></a>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>김철수</td>
-                                    <td>kim@example.com</td>
-                                    <td>2023-05-14</td>
-                                    <td>
-                                        <a href="#" class="text-primary me-2"><i class="bi bi-pencil-square"></i></a>
-                                        <a href="#" class="text-danger"><i class="bi bi-trash"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>이영희</td>
-                                    <td>lee@example.com</td>
-                                    <td>2023-05-13</td>
-                                    <td>
-                                        <a href="#" class="text-primary me-2"><i class="bi bi-pencil-square"></i></a>
-                                        <a href="#" class="text-danger"><i class="bi bi-trash"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>박지민</td>
-                                    <td>park@example.com</td>
-                                    <td>2023-05-12</td>
-                                    <td>
-                                        <a href="#" class="text-primary me-2"><i class="bi bi-pencil-square"></i></a>
-                                        <a href="#" class="text-danger"><i class="bi bi-trash"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>정민수</td>
-                                    <td>jung@example.com</td>
-                                    <td>2023-05-11</td>
-                                    <td>
-                                        <a href="#" class="text-primary me-2"><i class="bi bi-pencil-square"></i></a>
-                                        <a href="#" class="text-danger"><i class="bi bi-trash"></i></a>
-                                    </td>
-                                </tr>
+                                </c:forEach>
                             </tbody>
                         </table>
                     </div>
@@ -451,7 +417,7 @@
                 <div class="admin-card">
                     <div class="admin-card-header">
                         <span>최근 등록된 영상</span>
-                        <a href="${pageContext.request.contextPath}/admin/articles" class="admin-btn admin-btn-primary">
+                        <a href="/admin/articles" class="admin-btn admin-btn-primary">
                             <i class="bi bi-film"></i> 영상 관리
                         </a>
                     </div>
@@ -461,41 +427,18 @@
                                 <tr>
                                     <th>제목</th>
                                     <th>부위</th>
-                                    <th>등록일</th>
                                     <th>조회수</th>
                                 </tr>
                             </thead>
                             <tbody>
+                            	<c:forEach var="article" items="${articles }">
                                 <tr>
-                                    <td>초보자를 위한 전신 운동</td>
-                                    <td><span class="badge bg-primary">전신</span></td>
-                                    <td>2023-05-15</td>
-                                    <td>1,546</td>
+                                    <td>${article.videoArticleTitle }</td>
+                                    <td><span class="badge bg-primary">${article.videoArticlePart }</span></td>
+                                    
+                                    <td>${article.videoArticleViews }</td>
                                 </tr>
-                                <tr>
-                                    <td>확실한 복근 만들기</td>
-                                    <td><span class="badge bg-success">복부</span></td>
-                                    <td>2023-05-14</td>
-                                    <td>2,210</td>
-                                </tr>
-                                <tr>
-                                    <td>상체 근력 강화 운동</td>
-                                    <td><span class="badge bg-info">상체</span></td>
-                                    <td>2023-05-13</td>
-                                    <td>1,890</td>
-                                </tr>
-                                <tr>
-                                    <td>하체 집중 트레이닝</td>
-                                    <td><span class="badge bg-warning">하체</span></td>
-                                    <td>2023-05-12</td>
-                                    <td>1,357</td>
-                                </tr>
-                                <tr>
-                                    <td>다이어트를 위한 유산소 운동</td>
-                                    <td><span class="badge bg-danger">전신</span></td>
-                                    <td>2023-05-11</td>
-                                    <td>2,456</td>
-                                </tr>
+                                </c:forEach>
                             </tbody>
                         </table>
                     </div>
@@ -522,7 +465,7 @@
             <div class="admin-card-body">
                 <div class="row">
                     <div class="col-md-3 mb-3">
-                        <a href="${pageContext.request.contextPath}/admin/articles/registform" class="btn btn-outline-primary w-100 d-flex flex-column align-items-center p-3">
+                        <a href="/admin/articles/registform" class="btn btn-outline-primary w-100 d-flex flex-column align-items-center p-3">
                             <i class="bi bi-plus-circle mb-2" style="font-size: 2rem;"></i>
                             <span>영상 등록</span>
                         </a>

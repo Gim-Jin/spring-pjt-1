@@ -5,7 +5,7 @@
 <header>
 	<nav class="navbar navbar-expand-lg navbar-light bg-white py-3 fixed-top shadow-sm">
 		<div class="container">
-			<a class="navbar-brand fw-bold" href="index.jsp">
+			<a class="navbar-brand fw-bold" href="/index">
 				<span class="text-primary">SSA</span><span class="text-dark">FIT</span>
 			</a>
 			<button class="navbar-toggler" type="button"
