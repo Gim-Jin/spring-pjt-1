@@ -26,4 +26,7 @@ public interface VideoArticleRepository {
 
 	// 시청순 정렬
 	public List<VideoArticleDto> selectAllByviewcnt();
+	
+	// 조회수 업데이트
+	public void updateViewCount(long id);
 }

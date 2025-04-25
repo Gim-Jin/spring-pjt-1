@@ -6,9 +6,9 @@
 
 	<insert id="insert" parameterType="CommentDto">
 		INSERT INTO comment
-		(comment_id,user_id,video_article_id,comment_content,write_date)
+		(comment_id,user_id,video_article_id,comment_content)
 		VALUES
-		(#{commentId},#{userId},#{videoArticleId},#{reviewContent},#{writeDate})
+		(#{commentId},#{userId},#{videoArticleId},#{commentContent})
 	</insert>
 
 	<update id="update" parameterType="CommentDto">
@@ -31,7 +31,8 @@
 	<select id="selectAll" parameterType="long"
 		resultType="CommentDto">
 		SELECT *
-		FROM comment
+		FROM comment 
+		INNER JOIN users ON users.user_id = comment.user_id
 		WHERE video_article_id =
 		#{videoArticleid}
 	</select>

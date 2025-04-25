@@ -56,6 +56,8 @@ public class UserController {
 			
 			session.setAttribute("role", "user");
 			
+			session.setAttribute("id",loginedUser.getUserId());
+			
 			return "redirect:/index";
 			
 		} 

@@ -59,4 +59,12 @@
 		DELECT FROM video_article
 		WHERE video_article_id = #{videoArticleId}
 	</delete>
+	
+	<update id="updateViewCount" parameterType="long">
+		UPDATE video_article
+		SET
+		video_article_views = video_article_views + 1
+		WHERE video_article_id = #{id}
+	</update>
+	
 </mapper>
