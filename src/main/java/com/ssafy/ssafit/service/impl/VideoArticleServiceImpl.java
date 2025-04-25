@@ -36,6 +36,7 @@ public class VideoArticleServiceImpl implements VideoArticleService {
 
 	@Override
 	public VideoArticleDto detailArticle(long id) {
+		videoRepository.updateViewCount(id);
 		return videoRepository.selectById(id);
 	}
 

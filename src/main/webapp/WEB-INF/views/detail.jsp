@@ -226,9 +226,11 @@ body {
                                 </button>
                             </div>
                         </form>
-                        <form method="post" action="main">
-                            <input type="hidden" name="action" value="writeform">
-                            <input type="hidden" name="videoId" value="${article.videoArticleId}">
+                        <form method="post" action="/articles/${article.videoArticleId }/comment">
+
+                            <input type="hidden" name="videoArticleId" value="${article.videoArticleId}">
+                            <input type="text" name="commentContent">
+               
                             <button class="btn btn-write">
                                 <i class="bi bi-pencil-square me-1"></i> 리뷰 작성
                             </button>
@@ -241,15 +243,14 @@ body {
                         <thead>
                             <tr>
                                 <th style="width: 10%">번호</th>
-                                <th style="width: 40%">제목</th>
+                                <th style="width: 40%">내용</th>
                                 <th style="width: 15%">작성자</th>
-                                <th style="width: 15%">조회수</th>
                                 <th style="width: 20%">작성시간</th>
                             </tr>
                         </thead>
                         <tbody>
                             <c:choose>
-                                <c:when test="${empty requestScope.reviews}">
+                                <c:when test="${empty comments}">
                                     <tr>
                                         <td colspan="5" class="no-reviews">
                                             <i class="bi bi-chat-square-dots me-2"></i> 아직 작성된 리뷰가 없습니다. 첫 리뷰를 작성해보세요!
@@ -257,18 +258,17 @@ body {
                                     </tr>
                                 </c:when>
                                 <c:otherwise>
-                                    <c:forEach var="item" items="${reviews}" varStatus="status">
+                                    <c:forEach var="comment" items="${comments}" varStatus="status">
                                         <tr>
                                             <td class="text-center">${status.count}</td>
                                             <td>
                                                 <a class="review-title text-decoration-none" 
-                                                    href="main?action=review&videoId=${requestScope.video.id}&reviewId=${item.id}">
-                                                    ${item.title}
+                                                    href="main?action=review&videoId=&reviewId=${comment.commentId}">
+                                                    ${comment.commentContent}
                                                 </a>
                                             </td>
-                                            <td class="text-center">${item.writer}</td>
-                                            <td class="text-center">${item.views}</td>
-                                            <td class="text-center">${item.formattedWriteDate}</td>
+                                            <td class="text-center">${comment.userNickName}</td>
+                                            <td class="text-center">${comment.writeDate}</td>
                                         </tr>
                                     </c:forEach>
                                 </c:otherwise>
