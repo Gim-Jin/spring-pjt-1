@@ -29,4 +29,8 @@ public interface VideoArticleRepository {
 	
 	//부위별 조회
 	public List<VideoArticleDto> selectVideosByPart(String part);
+
+	// 조회수 업데이트
+	public void updateViewCount(long id);
+
 }

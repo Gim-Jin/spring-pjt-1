@@ -13,13 +13,18 @@ import com.ssafy.ssafit.dto.CommentDto;
 import com.ssafy.ssafit.dto.VideoArticleDto;
 import com.ssafy.ssafit.service.CommentService;
 import com.ssafy.ssafit.service.VideoArticleService;
+
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class VideoArticleController {
 
 	private final VideoArticleService videoService;
+	
 	private final CommentService commentService;
 
 	public VideoArticleController(VideoArticleService videoService, CommentService commentService) {
@@ -69,9 +74,13 @@ public class VideoArticleController {
 
 	// 댓글쓰기
 	@PostMapping("/articles/{id}/comment")
-	public String registerComment(@PathVariable long id, @ModelAttribute CommentDto comment) {
+	public String registerComment(@PathVariable long id, @ModelAttribute CommentDto comment, HttpSession session) {
+
+
+		
+		comment.setUserId(Long.parseLong(session.getAttribute("id").toString()));
 		commentService.createComment(comment);
-		return "redirect:/articles/{id}";
+		return "redirect:/articles/"+id;
 	}
 
 	@PostMapping("/articles/{articleId}/comments/{commentId}/delete")
