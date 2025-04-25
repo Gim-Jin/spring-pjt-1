@@ -26,7 +26,7 @@ public class UserController {
 	
 	@GetMapping("/regist")
 	public String registForm() {
-		return "registForm";
+		return "userRegistForm";
 	}
 	
 	@PostMapping("/regist")
@@ -53,6 +53,8 @@ public class UserController {
 			session.setAttribute("email", loginedUser.getUserEmail());
 			
 			session.setAttribute("nickname", loginedUser.getUserNickName());
+			
+			session.setAttribute("role", "user");
 			
 			return "redirect:/index";
 			
