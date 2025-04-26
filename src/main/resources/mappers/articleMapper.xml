@@ -36,11 +36,18 @@
 		ORDER BY video_article_views DESC
 	</select>
 
-	<!-- 검색 -->
+	<!-- 검색 (정확히 일치하는 제목) -->
 	<select id="searchByTitle" parameterType="String" resultType="VideoArticleDto">
 		SELECT *
 		FROM video_article
 		WHERE video_article_title = #{videoArticleTitle}
+	</select>
+	
+	<!-- 검색 (부분 일치하는 제목) -->
+	<select id="searchByKeyword" parameterType="String" resultType="VideoArticleDto">
+		SELECT *
+		FROM video_article
+		WHERE video_article_title LIKE CONCAT('%', #{keyword}, '%')
 	</select>
 
 	<!-- 수정 -->
