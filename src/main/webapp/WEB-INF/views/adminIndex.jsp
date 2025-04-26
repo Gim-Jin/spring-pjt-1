@@ -296,7 +296,7 @@
                 </a>
             </li>
             <li class="admin-nav-item">
-                <a href=/admin/articles" class="admin-nav-link">
+                <a href="/admin/articles" class="admin-nav-link">
                     <i class="bi bi-film"></i> 운동 영상 관리
                 </a>
             </li>

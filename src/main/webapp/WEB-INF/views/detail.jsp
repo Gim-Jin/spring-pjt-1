@@ -122,35 +122,6 @@ body {
     background-color: #0d6efd;
 }
 
-.table-reviews {
-    background-color: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-}
-
-.table-reviews th {
-    background-color: #f8f9fa;
-    font-weight: 600;
-    text-align: center;
-    padding: 15px;
-}
-
-.table-reviews td {
-    padding: 15px;
-    vertical-align: middle;
-}
-
-.review-title {
-    font-weight: 500;
-    color: #212529;
-    transition: color 0.3s ease;
-}
-
-.review-title:hover {
-    color: #0d6efd;
-}
-
 .btn-write {
     background-color: #0d6efd;
     color: white;
@@ -166,18 +137,9 @@ body {
     box-shadow: 0 5px 15px rgba(13, 110, 253, 0.3);
 }
 
-.search-container {
-    max-width: 400px;
-}
-
 .form-control:focus {
     box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
     border-color: #86b7fe;
-}
-
-.btn-search {
-    background-color: #0d6efd;
-    color: white;
 }
 
 .no-reviews {
@@ -185,6 +147,56 @@ body {
     padding: 30px;
     color: #6c757d;
     font-style: italic;
+}
+
+.comment-list {
+    max-height: 500px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+.comment-item {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    background-color: white;
+    transition: background-color 0.2s ease;
+}
+
+.comment-item:hover {
+    background-color: #f8f9fa;
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.comment-author {
+    font-weight: 600;
+    color: #343a40;
+}
+
+.comment-date {
+    font-size: 0.85rem;
+    color: #6c757d;
+}
+
+.comment-content {
+    color: #495057;
+}
+
+.comment-form {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.loading-spinner {
+    display: none;
+    text-align: center;
+    padding: 20px;
 }
 </style>
 </head>
@@ -214,95 +226,115 @@ body {
             </div>
 
 			<div class="reviews-container">
-                <div class="d-flex justify-content-between align-items-center mb-4">
+                <div class="mb-4">
                     <h4 class="review-header mb-0">리뷰 목록</h4>
-                    <div class="d-flex gap-2">
-                        <form class="search-container" method="post" action="main">
-                            <div class="input-group">
-                                <input type="hidden" name="action" value="search">
-                                <input type="text" class="form-control" name="value" placeholder="제목, 내용으로 검색">
-                                <button class="btn btn-search" type="submit">
-                                    <i class="bi bi-search"></i>
-                                </button>
-                            </div>
-                        </form>
-                        <form method="post" action="/articles/${article.videoArticleId }/comment">
-
-                            <input type="hidden" name="videoArticleId" value="${article.videoArticleId}">
-                            <input type="text" name="commentContent">
-               
-                            <button class="btn btn-write">
-                                <i class="bi bi-pencil-square me-1"></i> 리뷰 작성
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            
-                <div class="table-responsive">
-                    <table class="table table-hover table-reviews">
-                        <thead>
-                            <tr>
-                                <th style="width: 10%">번호</th>
-                                <th style="width: 40%">내용</th>
-                                <th style="width: 15%">작성자</th>
-                                <th style="width: 20%">작성시간</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <c:choose>
-                                <c:when test="${empty comments}">
-                                    <tr>
-                                        <td colspan="5" class="no-reviews">
-                                            <i class="bi bi-chat-square-dots me-2"></i> 아직 작성된 리뷰가 없습니다. 첫 리뷰를 작성해보세요!
-                                        </td>
-                                    </tr>
-                                </c:when>
-                                <c:otherwise>
-                                    <c:forEach var="comment" items="${comments}" varStatus="status">
-                                        <tr>
-                                            <td class="text-center">${status.count}</td>
-                                            <td>
-                                                <a class="review-title text-decoration-none" 
-                                                    href="main?action=review&videoId=&reviewId=${comment.commentId}">
-                                                    ${comment.commentContent}
-                                                </a>
-                                            </td>
-                                            <td class="text-center">${comment.userNickName}</td>
-                                            <td class="text-center">${comment.writeDate}</td>
-                                        </tr>
-                                    </c:forEach>
-                                </c:otherwise>
-                            </c:choose>
-                        </tbody>
-                    </table>
                 </div>
                 
-                <div class="d-flex justify-content-center mt-4">
-                    <nav aria-label="Page navigation">
-                        <ul class="pagination">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
-                            </li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
+                <!-- 댓글 목록 (리스트 형태로 변경) -->
+                <div class="comment-list" id="commentList">
+                    <c:if test="${empty comments}">
+                        <div class="no-reviews">작성된 리뷰가 없습니다. 첫 번째 리뷰를 작성해보세요!</div>
+                    </c:if>
+                    
+                    <c:forEach items="${comments}" var="comment">
+                        <div class="comment-item">
+                            <div class="comment-header">
+                                <span class="comment-author">${comment.userNickName}</span>
+                                <span class="comment-date">${comment.writeDate}</span>
+                            </div>
+                            <div class="comment-content">${comment.commentContent}</div>
+                        </div>
+                    </c:forEach>
                 </div>
-			</div>
+                
+                <!-- 로딩 스피너 -->
+                <div class="loading-spinner" id="loadingSpinner">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">로딩 중...</span>
+                    </div>
+                </div>
+                
+                <!-- 댓글 입력 폼 -->
+                <div class="comment-form">
+                    <form method="post" action="${pageContext.request.contextPath}/articles/${article.videoArticleId}/comment" id="commentForm">
+                        <input type="hidden" name="videoArticleId" value="${article.videoArticleId}">
+                        <div class="mb-3">
+                            <label for="commentContent" class="form-label">댓글 작성</label>
+                            <textarea class="form-control" id="commentContent" name="commentContent" rows="3" placeholder="댓글을 입력하세요" required></textarea>
+                        </div>
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-primary">등록하기</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
 		</section>
 	</main>
-    
+
 	<%@ include file="../footer.jsp"%>
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // 무한 스크롤 구현
+        document.addEventListener('DOMContentLoaded', function() {
+            const commentList = document.getElementById('commentList');
+            const loadingSpinner = document.getElementById('loadingSpinner');
+            
+            let page = 1;
+            let isLoading = false;
+            let hasMoreComments = true;
+            
+            // 스크롤 이벤트 리스너
+            commentList.addEventListener('scroll', function() {
+                const { scrollTop, scrollHeight, clientHeight } = commentList;
+                
+                // 스크롤이 하단에 도달했는지 확인
+                if (scrollTop + clientHeight >= scrollHeight - 5 && !isLoading && hasMoreComments) {
+                    loadMoreComments();
+                }
+            });
+            
+            // 추가 댓글 로딩 함수
+            function loadMoreComments() {
+                isLoading = true;
+                loadingSpinner.style.display = 'block';
+                
+                // 다음 페이지 댓글 로딩 (AJAX 요청)
+                fetch(`/api/articles/${article.videoArticleId}/comments?page=${page}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        loadingSpinner.style.display = 'none';
+                        
+                        if (data.length === 0) {
+                            hasMoreComments = false;
+                            return;
+                        }
+                        
+                        // 댓글 목록에 추가
+                        data.forEach(comment => {
+                            const commentItem = document.createElement('div');
+                            commentItem.className = 'comment-item';
+                            commentItem.innerHTML = `
+                                <div class="comment-header">
+                                    <span class="comment-author">${comment.userNickName}</span>
+                                    <span class="comment-date">${comment.writeDate}</span>
+                                </div>
+                                <div class="comment-content">${comment.commentContent}</div>
+                            `;
+                            commentList.appendChild(commentItem);
+                        });
+                        
+                        page++;
+                        isLoading = false;
+                    })
+                    .catch(error => {
+                        console.error('댓글을 불러오는 중 오류가 발생했습니다:', error);
+                        loadingSpinner.style.display = 'none';
+                        isLoading = false;
+                    });
+            }
+        });
+    </script>
 </body>
 
 </html>

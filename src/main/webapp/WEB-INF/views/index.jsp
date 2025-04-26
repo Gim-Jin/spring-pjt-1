@@ -58,7 +58,6 @@
                 <p class="lead mb-4">SSAFIT과 함께 운동하고 더 나은 삶을 경험하세요.</p>
                 <div class="d-flex justify-content-center">
                     <a href="#exercise-section" class="btn btn-primary me-2 px-4 py-2">운동 시작하기</a>
-                    <a href="/user/register" class="btn btn-outline-light px-4 py-2">회원가입</a>
                 </div>
             </div>
         </section>
@@ -192,7 +191,7 @@
                             <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i> 효과적인 운동 루틴 찾기</li>
                             <li><i class="bi bi-check-circle-fill text-primary me-2"></i> 건강한 생활 습관 형성</li>
                         </ul>
-                        <a href="/board/list" class="btn btn-primary px-4">커뮤니티 방문하기</a>
+                        <a href="${pageContext.request.contextPath}/community" class="btn btn-primary px-4">커뮤니티 방문하기</a>
                     </div>
                     <div class="col-lg-6 mt-4 mt-lg-0">
                         <img src="https://images.unsplash.com/photo-1593079831268-3381b0db4a77?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1450&q=80" 

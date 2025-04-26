@@ -17,7 +17,6 @@ import com.ssafy.ssafit.service.VideoArticleService;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -44,7 +43,13 @@ public class VideoArticleController {
 		model.addAttribute("articles", articles);
 		return "index";
 	}
-
+	
+	// 도움말 페이지
+	@GetMapping("/help")
+	public String help() {
+		return "help";
+	}
+	
 	// 정렬
 	@GetMapping("/index/views")
 	public String selectAllByViewcnt(Model model) {
@@ -53,11 +58,26 @@ public class VideoArticleController {
 		return "index"; // 기존 뷰 재사용 가능
 	}
 
-	// 검색 제목
+	// 검색 제목 (정확히 일치)
 	@GetMapping("/search/{title}")
 	public String searchByTitle(@PathVariable String title, Model model) {
 		List<VideoArticleDto> articles = videoService.searchByTitle(title);
 		model.addAttribute("articles", articles);
+		return "index"; // 검색 결과도 index 페이지 재활용
+	}
+	
+	// 검색 키워드 (부분 일치)
+	@GetMapping("/search")
+	public String searchByKeyword(@RequestParam String keyword, Model model) {
+		List<VideoArticleDto> articles = videoService.searchByKeyword(keyword);
+		// URL에서 비디오 ID 추출
+		for (VideoArticleDto article : articles) {
+			String url = article.getVideoArticleUrl();
+			String videoId = url.substring(url.lastIndexOf("/") + 1);
+			article.setVideoArticleUrl(videoId);
+		}
+		model.addAttribute("articles", articles);
+		model.addAttribute("searchKeyword", keyword);
 		return "index"; // 검색 결과도 index 페이지 재활용
 	}
 
@@ -119,6 +139,42 @@ public class VideoArticleController {
 		model.addAttribute("articles", articles);
 		model.addAttribute("selectedPart", category);
 		return "index";
+	}
+	
+	// 커뮤니티 준비 중 페이지
+	@GetMapping("/community")
+	public String communitySoon(Model model) {
+		model.addAttribute("title", "커뮤니티");
+		model.addAttribute("type", "community");
+		model.addAttribute("icon", "bi bi-tools");
+		model.addAttribute("message", "SSAFIT 커뮤니티 서비스를 준비하고 있습니다. 곧 다양한 운동 경험과 건강한 라이프스타일을 공유할 수 있는 공간이 완성될 예정입니다.");
+		return "coming_soon";
+	}
+	
+	// 마이페이지 준비 중 페이지
+	@GetMapping("/mypage")
+	public String mypageSoon(Model model) {
+		model.addAttribute("title", "마이페이지");
+		model.addAttribute("type", "mypage");
+		model.addAttribute("icon", "bi bi-person-circle");
+		model.addAttribute("message", "SSAFIT 마이페이지 서비스를 준비하고 있습니다. 곧 개인 프로필 관리, 운동 기록, 활동 내역 등 다양한 기능을 제공할 예정입니다.");
+		return "coming_soon";
+	}
+	
+	// 찜한 영상 준비 중 페이지
+	@GetMapping("/favorites")
+	public String favoritesSoon(Model model) {
+		model.addAttribute("title", "찜한 영상");
+		model.addAttribute("type", "favorites");
+		model.addAttribute("icon", "bi bi-heart");
+		model.addAttribute("message", "SSAFIT 찜한 영상 서비스를 준비하고 있습니다. 곧 좋아하는 운동 영상을 저장하고 카테고리별로 관리할 수 있는 기능을 제공할 예정입니다.");
+		return "coming_soon";
+	}
+	
+	// 기존 /board/list 요청을 커뮤니티 준비 중 페이지로 리디렉션
+	@GetMapping("/board/list")
+	public String boardListRedirect() {
+		return "redirect:/community";
 	}
 
 }

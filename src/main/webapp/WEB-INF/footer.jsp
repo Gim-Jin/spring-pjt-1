@@ -13,7 +13,7 @@
 				<p class="mb-3">
 					<i class="bi bi-envelope me-2"></i>contact@ssafit.com</p>
 				<p class="mb-3">
-					<i class="bi bi-telephone me-2"></i>1588-3357</p>
+					<i class="bi bi-telephone me-2"></i>123-4567-8901</p>
 			</div>
 			
 			<div class="col-md-4 mb-4 mb-md-0">
@@ -26,9 +26,9 @@
 					<li class="mb-2">
 						<a href="#" class="text-white text-decoration-none"><i class="bi bi-chevron-right me-2"></i>커뮤니티</a></li>
 					<li class="mb-2">
-						<a href="#" class="text-white text-decoration-none"><i class="bi bi-chevron-right me-2"></i>자주 묻는 질문</a></li>
+						<a href="${pageContext.request.contextPath}/help" class="text-white text-decoration-none"><i class="bi bi-chevron-right me-2"></i>도움말</a></li>
 					<li class="mb-2">
-						<a href="#" class="text-white text-decoration-none"><i class="bi bi-chevron-right me-2"></i>개인정보처리방침</a></li>
+						<a href="${pageContext.request.contextPath}/help#faqAccordion" class="text-white text-decoration-none"><i class="bi bi-chevron-right me-2"></i>자주 묻는 질문</a></li>
 				</ul>
 			</div>
 			
@@ -56,7 +56,7 @@
 		<hr class="my-4 bg-light">
 		
 		<div class="text-center">
-			<p class="mb-0">&copy; 2025 SSAFY 13 Daejeon class 3 Kim Square. All Rights Reserved.</p>
+			<p class="mb-0">&copy; 2025 SSAFY 13 Daejeon class 3 Kim & Jin. All Rights Reserved.</p>
 		</div>
 	</div>
 </footer>

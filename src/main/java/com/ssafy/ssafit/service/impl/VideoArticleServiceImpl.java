@@ -46,6 +46,11 @@ public class VideoArticleServiceImpl implements VideoArticleService {
 	}
 
 	@Override
+	public List<VideoArticleDto> searchByKeyword(String keyword) {
+		return videoRepository.searchByKeyword(keyword);
+	}
+
+	@Override
 	public List<VideoArticleDto> selectAll() {
 		return videoRepository.selectAll();
 	}

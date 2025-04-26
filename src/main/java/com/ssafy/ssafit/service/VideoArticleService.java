@@ -15,8 +15,11 @@ public interface VideoArticleService {
 	// 자세히 보기
 	public VideoArticleDto detailArticle(long id);
 
-	// 검색
+	// 검색 (정확히 일치하는 제목)
 	public List<VideoArticleDto> searchByTitle(String title);
+	
+	// 검색 (부분 일치하는 제목)
+	public List<VideoArticleDto> searchByKeyword(String keyword);
 
 	// 전체목록 조회
 	public List<VideoArticleDto> selectAll();
